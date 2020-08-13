@@ -25,9 +25,13 @@ class ContactController extends Controller
     }*/
 
     public function allData() {
-        $contact = new Contact;
         //$contact->where('subject', '<>', 'ХУЙ')->get()
-        return view('messages', ['data' => $contact->orderBy('id', 'asc' )->take(10)->get()]);
+        return view(
+            'messages',
+            [
+                'skip' => true
+            ]
+        );
     }
 
 }

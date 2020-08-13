@@ -1,6 +1,7 @@
-@extends('layouts.app')
-@section('pastas')
-    <div  class="aside">
+@if(isset($skip) && $skip==true)
+@else
+
+    <div  class="table table-bordered table-hover table-responsive-sm">
         <h1>Все сообщения</h1>
         <table class="table table-bordered table-hover table-responsive-sm">
             <thead>
@@ -20,6 +21,5 @@
             @endforeach
             </thead>
         </table>
-
-        @endsection
     </div>
+@endif

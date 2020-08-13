@@ -22,6 +22,8 @@
             </div>
         </div>
     </div>
-{{--@include('inc.pastas')--}}
+    @include('inc.pastas')
+
+
 </body>
 </html>
