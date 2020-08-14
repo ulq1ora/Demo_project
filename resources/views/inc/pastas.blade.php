@@ -8,6 +8,8 @@
             <tr class="table-primary">
                 <th>Paste name</th>
                 <th>Type</th>
+                <th>TTL</th>
+                <th>Expired</th>
                 <th>Created</th>
                 <th>####</th>
             </tr>
@@ -15,8 +17,10 @@
                 <tr class="table table-bordered table-hover table-responsive-sm">
                     <td>{{ $el->name }}</td>
                     <td>{{ $el->type }}</td>
+                    <td>{{ $el->ttl }}</td>
+                    <td>{{ $el->isExpired() ? 'YES' : 'NO' }}</td>
                     <td nowrap>{{ $el->created_at }}</td>
-                    <td><a href="#"><button class="btn btn-success">Детальнее</button></a></td>
+                    <td><a href="{{route('detailed',['hash' => $el->hash ])}}"><button class="btn btn-success">Детальнее</button></a></td>
                 </tr>
             @endforeach
             </thead>

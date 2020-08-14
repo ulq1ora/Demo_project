@@ -14,6 +14,7 @@ class ContactController extends Controller
         $contact->type = $req->input('type');
         $contact->ttl = $req->input('ttl');
         $contact->message = $req->input('message');
+        $contact->hash = md5(time());
 
         $contact->save();
 
@@ -32,6 +33,13 @@ class ContactController extends Controller
                 'skip' => true
             ]
         );
+    }
+
+    public function getPasta(Request $req){
+        /*dd($req->route('hash'));*/
+        return view('detailed');
+
+
     }
 
 }

@@ -21,8 +21,9 @@
                 @yield('content')
             </div>
         </div>
+        @include('inc.pastas')
     </div>
-    @include('inc.pastas')
+
 
 
 </body>
