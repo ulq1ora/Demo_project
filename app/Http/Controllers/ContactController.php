@@ -37,9 +37,18 @@ class ContactController extends Controller
 
     public function getPasta(Request $req){
         /*dd($req->route('hash'));*/
-        return view('detailed');
+        $Contact=Contact::where('hash', $req->route('hash'))->first();
+
+        return view('detailed',
+        [
+            'contact' => $Contact
+        ]
+    );
+
 
 
     }
+
+/*    public function getPastabyHash(){}*/
 
 }
