@@ -15,7 +15,7 @@ class AddHash extends Migration
     {
         Schema::table('contacts', function (Blueprint $table) {
 
-            $table->text('hash');
+            $table->string('hash')->unique();
         });
     }
 

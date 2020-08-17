@@ -3,29 +3,51 @@
 namespace Tests\Unit;
 
 use App\Contact;
-use PHPUnit\Framework\TestCase;
+use Carbon\Carbon;
+use Tests\TestCase;
 
 class NewContactTest extends TestCase
 {
-    private $contact;
 
-    public function setUp() : void
+    public function providerIsExpired()
     {
-        parent::setUp();
+        return [
+            'not expired' => [
+                'ttl' => '10m',
+                'created_at' => Carbon::now()->subMinutes(5),
+                'expected' => false,
+            ],
+            'expired' => [
+                'ttl' => '10m',
+                'created_at' => Carbon::now()->subMinutes(15),
+                'expected' => true,
+            ],
+            'inf_test' => [
+                'ttl' => 'inf',
+                'created_at' => Carbon::now()->subMinutes(5),
+                'expected' => false,
 
-        $this->contact = \App\Contact::first();
+            ]
+
+        ];
     }
-
     /**
      * A basic test example.
      *
+     * @dataProvider providerIsExpired
      * @return void
      */
-    public function testisExpired()
+    public function testisExpired($ttl,$created_at, $expected)
     {
-        $this->contact->ttl = '10m';
-        $this->contact->created_at = '2020.08.19 00:00:00';
-        $this->assertEquals('false', $this->contact->isExpired());
+        $Contact = new Contact();
+        $Contact->ttl = $ttl;
+        $Contact->created_at = $created_at;
+        $this->assertEquals($expected, $Contact->isExpired());
     }
 
+    public function testGetTtlSeconds(){
+        $Contact = new Contact();
+        $Contact->ttl = 'inf';
+        $this->assertEquals(null, $Contact->getTtlSeconds());
+    }
 }

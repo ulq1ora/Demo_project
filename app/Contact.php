@@ -26,15 +26,13 @@ class Contact extends Model
     public function isExpired():bool
     {
         $now=Carbon::now()->seconds()->timestamp;
-        //echo "NOW: ", $now, '<br>';
         $created_at=strtotime($this->created_at);
-        //echo 'CREATED: ', $created_at, '<br>';
         $ttl_seconds=$this->getTtlSeconds();
         if (null == $ttl_seconds){
             return false;
         }
         $expired_at = $created_at+$ttl_seconds;
-       // echo 'EXPIRED: ', $expired_at, '<br';
+        //dd($now, $ttl_seconds, $created_at, $expired_at, $now-$expired_at);
         if ($expired_at < $now) {
             return true;
         } else {

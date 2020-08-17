@@ -1,11 +1,8 @@
-//
-body{
-    background: #f4ecec;
-}
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
-footer {
-    width: 80%;
-    margin-left: 10%;
+// Variables
+@import 'variables';
 
-}
-
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';

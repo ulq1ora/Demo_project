@@ -5,21 +5,46 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Contact;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
     public function submit(ContactRequest $req) {
         $contact = new Contact();
+        /*Auth::id()->id->input('userid');*/
+        Auth::id();
+        if (Auth::check() == true)
+            {
+        $contact->userid = Auth::id();
+            }
+        else{
+            $contact->userid = null;
+            }
         $contact->name = $req->input('name');
         $contact->type = $req->input('type');
         $contact->ttl = $req->input('ttl');
         $contact->message = $req->input('message');
-        $contact->hash = md5(time());
+        do {
+            $contact->hash = md5(time());
+            try {
+                $contact->save();
+                break;
+            } catch (\Illuminate\Database\QueryException $e) {
+                $errorCode = $e->errorInfo[1];
+                if ($errorCode == 1062) {
+                    // TODO: recreate hash till success
+                }
+            }
+        } while (false);
 
-        $contact->save();
+
+
 
         return redirect()->route('contact')->with('success', 'Сообщение было отправлено ');
-    }
+
+
+        }
+
 
 /*    public function allData() {
         return view('messages', ['data' => Contact::all()]);
@@ -53,7 +78,5 @@ class ContactController extends Controller
 
 
     }
-
-/*    public function getPastabyHash(){}*/
 
 }

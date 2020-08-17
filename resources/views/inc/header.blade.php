@@ -4,5 +4,6 @@
         {{--<a class="p-2 text-dark" href="{{route('home')}}">Главная</a>--}}
         <a class="p-2 text-dark" href="{{route('contact')}}">Добавление пасты</a>
         <a class="p-2 text-dark" href="{{route('contact-data')}}">Последние пасты</a>
+        <a class="p-2 text-dark" href="/register">Регистрация</a>
     </nav>
 </div>
