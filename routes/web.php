@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', 'HomeController@allData')->name('home');
+Route::get('/', 'addContactController@allData')->name('home');
 
 
 Route::get('/contact', 'addContactController@allData')->name('contact');

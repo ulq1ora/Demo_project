@@ -20,8 +20,9 @@
             <div class="col-6">
                 @yield('content')
             </div>
+            @include('inc.pastas')
         </div>
-        @include('inc.pastas')
+
     </div>
 
 

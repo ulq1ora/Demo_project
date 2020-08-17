@@ -8,7 +8,7 @@ use Carbon\CarbonInterval;
 
 class Contact extends Model
 {
-    public function getTtlSeconds(): int
+    public function getTtlSeconds():  ?int
     {
         $map = [
             '10m' => CarbonInterval::minutes(10)->totalSeconds,
@@ -17,7 +17,7 @@ class Contact extends Model
             '01d' => CarbonInterval::day(1)->totalSeconds,
             '01w' => CarbonInterval::week(1)->totalSeconds,
             '01m' => CarbonInterval::month(1)->totalSeconds,
-            'inf' => null,
+            'inf' => null
         ];
 
         return $map[$this->ttl];
@@ -30,9 +30,12 @@ class Contact extends Model
         $created_at=strtotime($this->created_at);
         //echo 'CREATED: ', $created_at, '<br>';
         $ttl_seconds=$this->getTtlSeconds();
+        if (null == $ttl_seconds){
+            return false;
+        }
         $expired_at = $created_at+$ttl_seconds;
        // echo 'EXPIRED: ', $expired_at, '<br';
-        if ($expired_at < $now){
+        if ($expired_at < $now) {
             return true;
         } else {
             return false;

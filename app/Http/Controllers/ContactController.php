@@ -38,6 +38,11 @@ class ContactController extends Controller
     public function getPasta(Request $req){
         /*dd($req->route('hash'));*/
         $Contact=Contact::where('hash', $req->route('hash'))->first();
+        $Contact->isExpired();
+        if ($Contact->isExpired() == true){
+
+            return redirect('contact')->withErrors(['error' => 'Сообщение не доступно']);
+        }
 
         return view('detailed',
         [

@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title-block')
-    Детальный просмотр.
-@endsection
+@section('title-block')Детальный просмотр.@endsection
 @section('content')
-    <h1>Просмотр пасты</h1>
-    <td>{{ $contact->type }}</td>
-    <td>{{ $contact->type }}</td>
-    <td>{{ $contact->ttl }}</td>
+    <div class="alert alert-info">
+    <h1>{{$contact->name}}</h1>
+        <h3>{{ $contact->message }}</h3>
+    <p>{{ $contact->type }}</p>
+    <td small>{{ $contact->created_at }}</td>
+    </div>
 @endsection
