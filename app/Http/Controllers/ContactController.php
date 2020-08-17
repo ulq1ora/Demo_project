@@ -32,7 +32,7 @@ class ContactController extends Controller
             } catch (\Illuminate\Database\QueryException $e) {
                 $errorCode = $e->errorInfo[1];
                 if ($errorCode == 1062) {
-                    // TODO: recreate hash till success
+
                 }
             }
         } while (false);
