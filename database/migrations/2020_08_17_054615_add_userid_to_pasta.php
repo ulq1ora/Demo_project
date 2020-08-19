@@ -13,7 +13,7 @@ class AddUseridToPasta extends Migration
      */
     public function up()
     {
-        Schema::table('contacts', function (Blueprint $table) {
+        Schema::table('mod_pastas', function (Blueprint $table) {
 
             $table->text('userid')->nullable();
         });
@@ -26,7 +26,7 @@ class AddUseridToPasta extends Migration
      */
     public function down()
     {
-        Schema::table('contacts', function (Blueprint $table) {
+        Schema::table('mod_pastas', function (Blueprint $table) {
             //
         });
     }

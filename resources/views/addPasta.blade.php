@@ -13,10 +13,9 @@
         </div>
 
         <div class="form-group">
-            <label for="email">Выберите тип пасты</label>
-            {{--<input type="text" name="email" placeholder="Введите мыло" id="email" class="form-control">--}}
+            <label >Выберите тип пасты</label>
             <select name="type" class="form-control">
-                <option >public - </option> {{--//Тут можно внутри тега указать value=x и оно будет передаваться в базу.--}}
+                <option>public</option> {{--//Тут можно внутри тега указать value=x и оно будет передаваться в базу.--}}
                 @if(Auth::check())
                 <option>private</option>
                 <option>unlisted</option>
@@ -25,8 +24,17 @@
         </div>
 
         <div class="form-group">
+            <label for="lang">Укажите язык</label>
+            <select name="lang" class="form-control">
+                <option>Raw text</option>
+                <option>HTML</option>
+                <option>PHP</option>
+                <option>JS</option>
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="ttl">Укажите длительность пасты</label>
-            {{--<input type="text" name="subject" placeholder="Введитe тему сообщения" id="subject" class="form-control">--}}
             <select name="ttl" class="form-control">
                 <option>10m</option>
                 <option>01h</option>

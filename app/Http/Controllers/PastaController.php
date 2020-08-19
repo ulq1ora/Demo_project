@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Lang;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\modPasta;
 use Illuminate\Support\Facades\Auth;
+
 
 class PastaController extends Controller
 {
@@ -21,10 +23,11 @@ class PastaController extends Controller
         $contact->name = $req->input('name');
         $contact->type = $req->input('type');
         $contact->ttl = $req->input('ttl');
+        $contact->lang = $req->input('lang');
         $contact->message = $req->input('message');
         do {
             try {
-                $contact->hash = md5(time());   //todo переделать на поиск в базе сгенеренного хэша.
+                $contact->hash = md5(time());
                 $contact->save();
                 break;
             } catch (\Illuminate\Database\QueryException $e) {
@@ -36,7 +39,7 @@ class PastaController extends Controller
         } while (true);
 
 
-        return redirect()->route('contact')->with('success', 'Сообщение было отправлено ');
+        return redirect()->route('contact')->with('success', trans('alerts.msg.success'));
 
 
     }
@@ -63,10 +66,10 @@ class PastaController extends Controller
         $Contact->isExpired();
         if ($Contact->isExpired() == true) {
 
-            return redirect('contact')->withErrors(['error' => 'Сообщение не доступно']);
+            return redirect('contact')->withErrors(['error' => trans('alerts.msg.expired')]);
         } elseif(($Contact->type == modPasta::TYPE_UNLISTED) && (Auth::id() != $Contact->userid))
         {
-            return redirect('contact')->withErrors(['error' => 'Это приватная паста!']);
+            return redirect('contact')->withErrors(['error' => trans('alerts.msg.unlisted')]);
     }
 
         return view('detailed',

@@ -36,7 +36,6 @@ class modPasta extends Model
             return false;
         }
         $expired_at = $created_at+$ttl_seconds;
-        //dd($now, $ttl_seconds, $created_at, $expired_at, $now-$expired_at);
         if ($expired_at < $now) {
             return true;
         } else {

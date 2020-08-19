@@ -13,7 +13,7 @@ class CreateContactsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('mod_pastas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('type');
@@ -30,6 +30,6 @@ class CreateContactsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('mod_pastas');
     }
 }
