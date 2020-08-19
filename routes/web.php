@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', 'addPastaController@allData')->name('home');
-
+Route::post('/search', 'SearchController@search')->name('search');
 
 Route::get('/contact', 'addPastaController@allData')->name('contact');
 

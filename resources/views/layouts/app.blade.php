@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-compatible" content="ie=edge">
     <title>@yield('title-block')</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/app.css">
 
 
 </head>
@@ -17,7 +16,7 @@
         @include('inc.alerts')
 
         <div class="row">
-            <div class="col-6">
+            <div class="container">
                 @yield('content')
             </div>
             @include('inc.pastas')
@@ -25,7 +24,6 @@
 
     </div>
 
-
-
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </body>
 </html>
