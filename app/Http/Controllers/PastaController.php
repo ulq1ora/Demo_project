@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
-use App\Contact;
+use App\modPasta;
 use Illuminate\Support\Facades\Auth;
 
 class PastaController extends Controller
 {
     public function submit(ContactRequest $req)
     {
-        $contact = new Contact();
+        $contact = new modPasta();
         Auth::id();
         if (Auth::check() == true) {
             $contact->userid = Auth::id();
@@ -43,7 +43,7 @@ class PastaController extends Controller
 
 
     /*    public function allData() {
-            return view('messages', ['data' => Contact::all()]);
+            return view('messages', ['data' => modPasta::all()]);
         }*/
 
     public function allData()
@@ -59,12 +59,12 @@ class PastaController extends Controller
 
     public function getPasta(Request $req)
     {
-        $Contact = Contact::where('hash', $req->route('hash'))->first();
+        $Contact = modPasta::where('hash', $req->route('hash'))->first();
         $Contact->isExpired();
         if ($Contact->isExpired() == true) {
 
             return redirect('contact')->withErrors(['error' => 'Сообщение не доступно']);
-        } elseif(($Contact->type == Contact::TYPE_UNLISTED) && (Auth::id() != $Contact->userid))
+        } elseif(($Contact->type == modPasta::TYPE_UNLISTED) && (Auth::id() != $Contact->userid))
         {
             return redirect('contact')->withErrors(['error' => 'Это приватная паста!']);
     }

@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\CarbonInterval;
 
-class Contact extends Model
+class modPasta extends Model
 {
     public const TYPE_PUBLIC = 'public';
     public const TYPE_PRIVATE = 'private';

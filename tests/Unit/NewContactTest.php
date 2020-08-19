@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Contact;
+use App\modPasta;
 use Carbon\Carbon;
 use Tests\TestCase;
 
@@ -39,14 +39,14 @@ class NewContactTest extends TestCase
      */
     public function testisExpired($ttl,$created_at, $expected)
     {
-        $Contact = new Contact();
+        $Contact = new modPasta();
         $Contact->ttl = $ttl;
         $Contact->created_at = $created_at;
         $this->assertEquals($expected, $Contact->isExpired());
     }
 
     public function testGetTtlSeconds(){
-        $Contact = new Contact();
+        $Contact = new modPasta();
         $Contact->ttl = 'inf';
         $this->assertEquals(null, $Contact->getTtlSeconds());
     }

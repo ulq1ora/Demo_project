@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Contact;
+use App\modPasta;
 use Illuminate\Http\Request;
 
 class addPastaController extends Controller
 {
     public function allData()
     {
-        return view('contact');
+        return view('addPasta');
     }
 }
