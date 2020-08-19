@@ -16,8 +16,11 @@
             <label for="email">Выберите тип пасты</label>
             {{--<input type="text" name="email" placeholder="Введите мыло" id="email" class="form-control">--}}
             <select name="type" class="form-control">
-                <option>public</option>
+                <option >public - </option> {{--//Тут можно внутри тега указать value=x и оно будет передаваться в базу.--}}
+                @if(Auth::check())
                 <option>private</option>
+                <option>unlisted</option>
+                @endif
             </select>
         </div>
 

@@ -28,17 +28,16 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('*', function($view) {
             $contact = new Contact;
-            $contacts = $contact->orderBy('id')->take(30)->get();
+            $contacts = $contact->orderBy('id','desc')->take(10)->get();
             $filtered_contacts = [];
             foreach ($contacts as $contact) {
-                if (($contact->type == 'private') && (Auth::id() != $contact->userid)) {
+                if ((($contact->type == Contact::TYPE_PRIVATE) || ($contact->type == Contact::TYPE_UNLISTED)) && (Auth::id() != $contact->userid)) {
                 } elseif (($contact->isExpired() == true)) {
                 } else {
                     $filtered_contacts[] = $contact;
                 }
-
-                View::share('data', $filtered_contacts);
-            }
+                }
+            View::share('data', $filtered_contacts);
         });
     }
 }

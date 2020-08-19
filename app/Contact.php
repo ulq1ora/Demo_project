@@ -8,6 +8,10 @@ use Carbon\CarbonInterval;
 
 class Contact extends Model
 {
+    public const TYPE_PUBLIC = 'public';
+    public const TYPE_PRIVATE = 'private';
+    public const TYPE_UNLISTED = 'unlisted';
+
     public function getTtlSeconds():  ?int
     {
         $map = [
